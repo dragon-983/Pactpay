@@ -9,15 +9,14 @@
     "client"
   ],
   "scripts": {
-    "dev": "node scripts/dev.js",
-    "build": "npm run build -w server && npm run build -w client",
+    "dev": "node init && node scripts/dev.js",
+    "build": "node init && npm run build -w server && npm run build -w client",
     "test": "npm run test:contract && npm run test -w server && npm run test -w client",
     "test:contract": "cd contracts/escrow && cargo test",
-    "build:contract": "cd contracts/escrow && cargo build --target wasm32-unknown-unknown --release",
+    "build:contract": "node init && cd contracts/escrow && cargo build --target wasm32-unknown-unknown --release",
     "migrate": "node server/dist/scripts/migrate.js"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
   }
 }
-
