@@ -1,0 +1,23 @@
+{
+  "name": "pactpay",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Decentralized freelance payment escrow platform built on Stellar using Soroban smart contracts",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "npm run build -w server && npm run build -w client",
+    "test": "npm run test:contract && npm run test -w server && npm run test -w client",
+    "test:contract": "cd contracts/escrow && cargo test",
+    "build:contract": "cd contracts/escrow && cargo build --target wasm32-unknown-unknown --release",
+    "migrate": "node server/dist/scripts/migrate.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
+
